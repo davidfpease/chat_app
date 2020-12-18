@@ -45,14 +45,14 @@ router.post("/register", (req, res) => {
             .then(user => {
               const payload = { id: user.id, handle: user.handle };
 
-              jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+              jwt.sign(payload, keys.secretOrKey, { expiresIn: 7200 }, (err, token) => {
                 res.json({
                   success: true,
                   token: "Bearer " + token
                 });
               });
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log("Authentication error: " + err));
         });
       });
     }
@@ -86,7 +86,7 @@ router.post('/login', (req, res) => {
               payload,
               keys.secretOrKey,
               // Tell the key to expire in one hour
-              { expiresIn: 3600 },
+              { expiresIn: 7200 },
               (err, token) => {
                 res.json({
                   success: true,
