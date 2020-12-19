@@ -52,7 +52,7 @@ export default class ChatWindow extends Component {
     const payload = {
       content: this.state.message.content,
       to: this.props.roomName,
-      sender: this.props.currentUser.id,
+      sender: this.props.currentUser.handle,
       chatName: this.props.roomName,
       isChannel: true,
     };
@@ -75,7 +75,7 @@ export default class ChatWindow extends Component {
     return (
       <div>
         <h3>Chat Window</h3>
-        <p>Current user = {this.props.currentUser.id}</p>
+        <p>Current user = {this.props.currentUser.handle}</p>
         <form onSubmit={this.sendMessage}>
           <input type="text" value={this.state.message.content} 
             onChange={this.handleChange}></input>
